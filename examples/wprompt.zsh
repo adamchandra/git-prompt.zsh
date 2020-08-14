@@ -12,26 +12,29 @@ ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX="%{$fg[red]%})"
 ZSH_THEME_GIT_PROMPT_DETACHED="@%{$fg_no_bold[cyan]%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_no_bold[blue]%}↓"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_no_bold[blue]%}↑"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}●"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}✚"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✗"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}◆"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}◇"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
 ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 ZSH_THEME_GIT_PROMPT_TAGS_PREFIX=" · 🏷 "
 
 RPROMPT=''
-PROMPT=$'┏╸'
+PROMPT=$'┌─'
 [ -n "$SSH_CLIENT" ] \
     && [ -n "$SSH_TTY" ] \
     && PROMPT+='%B%F{blue}@%m%f%b · '  # Hostname, if in SSH session
-PROMPT+='%B%30<..<%~%b%<<'             # Path truncated to 30 characters
+# PROMPT+='%B%30<..<%~%b%<<'             # Path truncated to 30 characters
+PROMPT+='%~%b%<<'             # Path truncated to 30 characters
 PROMPT+='%(12V. · %F{244} %12v%f.)'   # Python virtualenv name
 PROMPT+='$(gitprompt)'                 # Git status
 PROMPT+='$(gitprompt_secondary)'       # Git status secondary info
-PROMPT+=$'\n┗╸'                        # Newline
+PROMPT+=$'\n└─'                        # Newline
 
-_WPROMPT_END='%(?.%(!.%F{white}❯%F{yellow}❯%F{red}.%F{blue}❯%F{cyan}❯%F{green})❯%f.%F{red}❯❯❯%f) '
+# _WPROMPT_END='%(?.%(!.%F{white}❯%F{yellow}❯%F{red}.%F{blue}❯%F{cyan}❯%F{green})❯%f.%F{red}❯❯❯%f) '
+_WPROMPT_END='> '
+
 # Vi mode indicator, if github.com/woefe/vi-mode.zsh is loaded
 if (( $+functions[vi_mode_status] )); then
     VI_INSERT_MODE_INDICATOR=$_WPROMPT_END
